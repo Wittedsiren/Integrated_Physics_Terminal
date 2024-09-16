@@ -2,10 +2,13 @@
 from bin.tbc import *
 import os
 import time
+import sys
 
 command = ""
 
 def commandLine():
+    if sys.argv[1] == "vector":
+        listOfCommands["vector"]()
     print("Command (tpye 'help' for assitance):")
     command = input()
     try:
