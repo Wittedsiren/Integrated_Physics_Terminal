@@ -1,5 +1,6 @@
 #This is for running sxp from the terminal.
 from bin.tbc import *
+from bin.vectorTerminal import vectorTerminal
 import os
 import time
 import sys
@@ -7,37 +8,14 @@ import sys
 command = ""
 
 def commandLine():
-    if sys.argv[1] == "vector":
-        listOfCommands["vector"]()
     print("Command (tpye 'help' for assitance):")
     command = input()
     try:
         listOfCommands[str.lower(command)]()
     except ValueError:
         print("That is not a command found in SXP database. Try typing 'help' for a list of commands")
-
     commandLine()
 
-def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
-    """
-    Call in a loop to create terminal progress bar
-    @params:
-        iteration   - Required  : current iteration (Int)
-        total       - Required  : total iterations (Int)
-        prefix      - Optional  : prefix string (Str)
-        suffix      - Optional  : suffix string (Str)
-        decimals    - Optional  : positive number of decimals in percent complete (Int)
-        length      - Optional  : character length of bar (Int)
-        fill        - Optional  : bar fill character (Str)
-        printEnd    - Optional  : end character (e.g. "\r", "\r\n") (Str)
-    """
-    percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
-    filledLength = int(length * iteration // total)
-    bar = fill * filledLength + '-' * (length - filledLength)
-    print(f'\r{prefix} |{bar}| {percent}% {suffix}', end = printEnd)
-    # Print New Line on Complete
-    if iteration == total: 
-        print()
 
 def startUp():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -70,4 +48,19 @@ def startUp():
 ░░░╚═╝░░░╚══════╝╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝╚═╝░░╚═╝╚══════╝                     
 """)
     commandLine()
-startUp()
+
+
+
+
+if len(sys.argv) <= 1:
+    print("\n--------------------------------------------------\n")
+    print("  type 'ipt -help' for help or a list of options")
+    print("\n--------------------------------------------------\n")
+
+        
+elif sys.argv[1] == "open":
+    startUp()
+elif sys.argv[1] == "vector":
+    vectorTerminal(sys.argv[2])
+
+    
